@@ -2,16 +2,21 @@ package com.example.cryptoapp.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 
+@Configuration
 public class BeanConfiguration {
-    @Value("${API_KEY}")
-    String apikey;
 
     @Bean
     HttpHeaders getHeaders () {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-CMC_PRO_API_KEY", apikey);
+        headers.set("X-CMC_PRO_API_KEY", System.getenv("API_KEY"));
         return headers;
+    }
+
+    @Bean
+    String getBaseUrl () {
+        return "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?slug=";
     }
 }
