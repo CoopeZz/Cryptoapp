@@ -9,8 +9,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class CryptoappApplication implements Runnable {
 
-    @Value("${API_KEY}")
-    private static String apiKey;
     private static final RestTemplate restTemplate = new RestTemplate();
 
     public static void main(String[] args) {
