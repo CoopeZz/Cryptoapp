@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class BeanConfiguration {
@@ -18,5 +19,10 @@ public class BeanConfiguration {
     @Bean
     String getBaseUrl () {
         return "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?slug=";
+    }
+
+    @Bean
+    RestTemplate getRestTemplate () {
+        return new RestTemplate();
     }
 }

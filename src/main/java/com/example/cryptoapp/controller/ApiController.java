@@ -19,9 +19,8 @@ public class ApiController {
     }
 
     @GetMapping("{cryptocurrency}")
-    ResponseEntity<CurrencyDTO> getCryptocurrency (@PathVariable ("cryptocurrency") String cryptocurrency) {
+    ResponseEntity<String> getCryptocurrency (@PathVariable ("cryptocurrency") String cryptocurrency) {
         cryptocurrency = cryptocurrency.toLowerCase(Locale.ROOT);
-        CurrencyDTO currencyDTO = cryptoService.getCryptocurrency(cryptocurrency);
-        return ResponseEntity.status(HttpStatus.OK).body(currencyDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(cryptoService.getCryptocurrency(cryptocurrency));
     }
 }
