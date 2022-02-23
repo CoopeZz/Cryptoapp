@@ -1,6 +1,7 @@
 package com.example.cryptoapp.service;
 
-import com.example.cryptoapp.model.CurrencyDTO;
+import com.example.cryptoapp.model.CryptoDTO;
+import com.example.cryptoapp.model.response.Base;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,9 +22,18 @@ public class CryptoService {
         this.restTemplate = restTemplate;
     }
 
-    public String getCryptocurrency (String cryptocurrency) {
+    public CryptoDTO createCryptoDTO (Base base) {
+        CryptoDTO cryptoDTO = new CryptoDTO();
+        cryptoDTO.setName(base.data.id.name);
+        cryptoDTO.setTag(base.data.id.symbol);
+        cryptoDTO.setUsdPrice(base.data.id.quote.usd.price);
+        cryptoDTO.setHourPercentChange(base.data.id.quote.usd.percentChange1h);
+        return cryptoDTO;
+    }
+
+    public CryptoDTO getCryptocurrency (String cryptocurrency) {
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> response = restTemplate.exchange(baseURL + cryptocurrency, HttpMethod.GET, entity, String.class);
-        return response.getBody();
+        ResponseEntity<Base> response = restTemplate.exchange(baseURL + cryptocurrency, HttpMethod.GET, entity, Base.class);
+        return createCryptoDTO(response.getBody());
     }
 }

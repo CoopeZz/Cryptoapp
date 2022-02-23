@@ -1,6 +1,6 @@
 package com.example.cryptoapp.controller;
 
-import com.example.cryptoapp.model.CurrencyDTO;
+import com.example.cryptoapp.model.CryptoDTO;
 import com.example.cryptoapp.service.CryptoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class ApiController {
     }
 
     @GetMapping("{cryptocurrency}")
-    ResponseEntity<String> getCryptocurrency (@PathVariable ("cryptocurrency") String cryptocurrency) {
+    ResponseEntity<CryptoDTO> getCryptocurrency (@PathVariable ("cryptocurrency") String cryptocurrency) {
         cryptocurrency = cryptocurrency.toLowerCase(Locale.ROOT);
         return ResponseEntity.status(HttpStatus.OK).body(cryptoService.getCryptocurrency(cryptocurrency));
     }
