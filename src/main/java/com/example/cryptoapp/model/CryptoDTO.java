@@ -9,5 +9,4 @@ public class CryptoDTO {
     private String name;
     private String tag;
     private Double usdPrice;
-    private Double hourPercentChange;
 }
