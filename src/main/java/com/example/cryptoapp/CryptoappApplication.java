@@ -17,13 +17,12 @@ public class CryptoappApplication implements CommandLineRunner {
         this.cryptoService = cryptoService;
     }
 
-
     public static void main(String[] args) {
         SpringApplication.run(CryptoappApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        new Timer().schedule(cryptoService, 0, 60000);
+    new Timer().schedule(cryptoService, 0, 60000);
     }
 }

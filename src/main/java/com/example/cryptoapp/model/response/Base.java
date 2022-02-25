@@ -13,13 +13,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "status",
     "data"
 })
 public class Base {
-
-    @JsonProperty("status")
-    public Status status;
     @JsonProperty("data")
     public Data data;
 }
